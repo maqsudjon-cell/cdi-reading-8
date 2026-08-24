@@ -4,7 +4,7 @@
   <meta name="test-title" content="CDI Reading 8" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IELTS Reading Test 8: Starting school later has positive effects on teens, The Importance of Business Cards | Flarestamina</title>
+<title>IELTS Reading Practice Test 8 with Answers — Flarestamina</title>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Flarestamina">
 <meta property="og:url" content="https://flarestamina.com/cdi-reading-8/">
@@ -471,7 +471,7 @@ function renderQI(q){
   else if(q.type==='mcq')html+=renderRadio(q.id,q.opts);
   else if(q.type==='info'){const v=S.answers[q.id]||'';html+='<div class="opts"><select class="hsel" data-q="'+q.id+'" onchange="saveA('+q.id+',this.value)"><option value="">\u2014 Select paragraph \u2014</option>';q.opts.forEach(o=>{html+='<option value="'+o+'"'+(v===o?' selected':'')+'>'+o+'</option>'});html+='</select></div>'}
   else if(q.type==='heads'){const v=S.answers[q.id]||'';html+='<div class="opts"><select class="hsel" data-q="'+q.id+'" onchange="saveA('+q.id+',this.value)"><option value="">\u2014 Select heading \u2014</option>';HEADINGS.forEach(h=>{html+='<option value="'+h.n+'"'+(v===h.n?' selected':'')+'>'+h.n+'. '+esc(h.t)+'</option>'});html+='</select></div>'}
-  else if(q.type==='short'){const v=S.answers[q.id]||'';html+='<input class="ainput" type="text" value="'+esc(v)+'" placeholder="Type your answer..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-q="'+q.id+'" oninput="saveA('+q.id+',this.value)" />';if(q.hint)html+='<div class="ahint">'+esc(q.hint)+'</div>'}
+  else if(q.type==='short'){const v=S.answers[q.id]||'';html+='<input class="ainput" aria-label="Question '+q.id+' answer" type="text" value="'+esc(v)+'" placeholder="Type your answer..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-q="'+q.id+'" oninput="saveA('+q.id+',this.value)" />';if(q.hint)html+='<div class="ahint">'+esc(q.hint)+'</div>'}
   html+='</div>';return html;
 }
 
@@ -628,7 +628,7 @@ function showResults(){
   const tm=String(Math.floor(taken/60)).padStart(2,'0'),ts=String(taken%60).padStart(2,'0');
   let pcards='';[1,2,3].forEach(p=>{const pn=ids.filter(n=>pOf(n)===p);const ps=pn.filter(chk).length;pcards+='<div class="pcard"><div class="pcardn">Passage '+p+'</div><strong>'+ps+'</strong><span class="of"> / '+pn.length+'</span></div>'});
   let rows='';[1,2,3].forEach(p=>{ids.filter(n=>pOf(n)===p).forEach(n=>{const ok=chk(n);const ua=S.answers[n];const ustr=Array.isArray(ua)?ua.join(', '):(ua||'');rows+='<div class="ans-row '+(ok?'correct':'wrong')+'"><strong>Q'+n+'</strong><span>'+(ustr?'Your answer: <strong>'+esc(ustr)+'</strong>':'<span class="muted">No answer</span>')+'</span><span>Correct: <strong>'+esc(ANSWERS[n])+'</strong></span><span class="tick '+(ok?'g':'b')+'">'+(ok?'\u2713':'\u2717')+'</span></div>'})});
-  $('resultsContent').innerHTML='<h1 style="color:var(--navy);margin-bottom:16px">Reading Test Results</h1>'+
+  $('resultsContent').innerHTML='<h2 style="color:var(--navy);margin-bottom:16px">Reading Test Results</h2>'+
     '<div class="score-hero"><div class="band-card"><span>Band Score</span><div class="band">'+bandV+'</div></div>'+
     '<div class="stats"><div class="stat">Raw score<strong>'+score+' / '+ids.length+'</strong></div><div class="stat">Time taken<strong>'+tm+':'+ts+'</strong></div><div class="stat">Passages<strong>3</strong></div><div class="stat">Questions<strong>'+ids.length+'</strong></div></div></div>'+
     '<div class="pcards">'+pcards+'</div>'+
